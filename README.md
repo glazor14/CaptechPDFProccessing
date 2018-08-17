@@ -1,2 +1,2 @@
-# CaptechPDFProccessing
-Proccessing SOW for Captech
+# CaptechPDFProcessing
+Processing SOW for Captech
