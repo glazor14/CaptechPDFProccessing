@@ -8,7 +8,25 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 
-def SOW_Parsing_TaM(keywords):
+def SOW_Parsing_TaM(text):
+	"""
+	We have a text variable which contains all the text in pdf file.
+	"""
+	#The word_tokenize() function will break our text phrases into #individual words
+	tokens = word_tokenize(text)
+
+	#we'll create a new list which contains punctuation we wish to clean
+	punctuations = ['(',')',';',':','[',']',',','.']
+
+	#stop_words = stopwords.words('english')
+
+	#We create a list comprehension which only returns a list of words 
+	#that are NOT IN stop_words and NOT IN punctuations.
+	#keywords = [word for word in tokens if not word 
+	#in stop_words and not word in punctuations]
+
+	keywords = [word for word in tokens if not word in punctuations]
+
 	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
 
 	# Find the Title of the Document
@@ -19,16 +37,18 @@ def SOW_Parsing_TaM(keywords):
 		if keywords[i+1] == "Title":
 			break
 		a = a +1
-	print (a)
+	#print (a)
 	projectTitle = (keywords[pindexes[a]+2:thindexes[0]])
-	print (projectTitle)
+	projectTitle = ' '.join(projectTitle)
+	print ("Project Title: ", projectTitle)
 
 	# Find the Client Name
 	capindexes = get_indexes("ﬁCapTechﬂ", keywords)
 	cindexes = get_indexes("ﬁClientﬂ", keywords)
 
 	clientName = keywords[capindexes[0]+2:cindexes[0]]
-	print(clientName)
+	clientName = ' '.join(clientName)
+	print("Client Name: ", clientName)
 
 	# Find the Client Contact Info
 	cciIndexes = get_indexes("Client", keywords)
@@ -46,15 +66,15 @@ def SOW_Parsing_TaM(keywords):
 		b = b + 1
 
 	clientContactInfo = keywords[cciIndexes[a] + 3:cpindexes[b]]
-
-	print (clientContactInfo)
+	clientContactInfo = ' '.join(clientContactInfo)
+	print ("Client Contact Info: ", clientContactInfo)
 
 	# Find the Captech Contact Info
 	conindexes = get_indexes("captechconsulting.com", keywords)
 
 	captechContactInfo = keywords[cpindexes[b]:conindexes[0]+1]
-
-	print(captechContactInfo)
+	captechContactInfo = ' '.join(captechContactInfo)
+	print("Captech Contact Info: ", captechContactInfo)
 
 	# Description of Services & Deliverables
 	rindexes = get_indexes("Role", keywords)
@@ -74,14 +94,38 @@ def SOW_Parsing_TaM(keywords):
 			break
 		c = c +1
 
-	print (a)
-
-	print ((keywords[rindexes[a]:sindexes[c]-1]))
+	#print (a)
+	servicesAndDevs = keywords[rindexes[a]:sindexes[c]-1]
+	servicesAndDevs = ' '.join(servicesAndDevs)
+	print ("Services and Deliverables: ", servicesAndDevs)
 
 	# Find Dates
+	bindexes = get_indexes("beginning", keywords)
+	eindexes = get_indexes("end", keywords)
 
+	a = 0
+	d = 0
+	for i in bindexes:
+		if keywords[i+1] == "on":
+			break
+		a = a +1
 
-	# Find Role & Resonsibilities table
+	for i in eindexes:
+		if keywords[i+1] == "ing":
+			break
+		d = d +1
+
+	#print(a)
+	#print(bindexes)
+
+	begDates = keywords[bindexes[a]+2:bindexes[a]+5]
+	endDates = keywords[eindexes[d]+3:eindexes[d]+6]
+
+	print("Start Date: ", ' '.join(begDates))
+	print("End Date: ", ' '.join(endDates))
+
+	# Find Role & Responsibilities table
+
 
 	# Find the Schedule
 
@@ -90,8 +134,8 @@ def SOW_Parsing_TaM(keywords):
 	rindexes = get_indexes("Role", keywords)
 	tindexes = get_indexes("Total", keywords)
 
-	print(rindexes)
-	print(tindexes)
+	#print(rindexes)
+	#print(tindexes)
 
 	a = 0
 
@@ -100,9 +144,10 @@ def SOW_Parsing_TaM(keywords):
 			break
 		a = a +1
 
-	print (a)
+	#print (a)
+	paymentTable = ' '.join(keywords[rindexes[a]:tindexes[0]+5])
 
-	print ((keywords[rindexes[a]:tindexes[0]+5]))
+	print ("Payment Table: ", paymentTable)
 
 
 name = ''.join(sys.argv[1:])
@@ -131,30 +176,11 @@ while count < num_pages:
 
 #pp.pprint(text)
 
-"""
-We have a text variable which contains all the text in pdf file.
-"""
-
-#The word_tokenize() function will break our text phrases into #individual words
-tokens = word_tokenize(text)
-
-#we'll create a new list which contains punctuation we wish to clean
-punctuations = ['(',')',';',':','[',']',',','.']
-
-#stop_words = stopwords.words('english')
-
-#We create a list comprehension which only returns a list of words 
-#that are NOT IN stop_words and NOT IN punctuations.
-#keywords = [word for word in tokens if not word 
-#in stop_words and not word in punctuations]
-
-keywords = [word for word in tokens if not word in punctuations]
-
 #retoke = MWETokenizer(keywords)
 
-pp.pprint(keywords)
+#pp.pprint(keywords)
 
-SOW_Parsing_TaM(keywords)
+SOW_Parsing_TaM(text)
 
 #index = keywords.index('Engineer')
 
