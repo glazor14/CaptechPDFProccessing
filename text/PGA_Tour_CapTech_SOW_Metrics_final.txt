@@ -1,0 +1,371 @@
+STATEMENT OF WORK NUMBER 1 
+
+To Master Services Agreement 
+
+Project Title: Platform Metrics Development 
+
+This Statement of Work Number 1 (“SOW”) effective April 18, 2018 (“Effective Date”) is attached to and 
+made  a  part  of  that  certain  Master  Services  Agreement  (“Agreement”),  dated  March  29,  2018,  by  and 
+between CapTech Ventures, Inc. (“CapTech”) and PGA Tour (“Client”). 
+ 
+This SOW supplements the Agreement and is subject in all respects to the terms of the Agreement. In the 
+event of a conflict between the terms of this SOW and the Agreement, the terms of the Agreement shall 
+govern unless the conflicting term in the SOW is specifically identified as superseding the related term in 
+the Agreement, in which case the conflicting term set forth in this SOW shall govern. Capitalized terms not 
+otherwise defined in this SOW will have the meanings given in the Agreement. 
+ 
+I.  
+ 
+
+Contact Information 
+
+Client Contact Information: 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+CapTech Contact 
+Information: 
+ 
+ 
+ 
+ 
+ 
+
+Jonas Gredenhag 
+ 
+816 A1A North  
+Suite 101 
+Ponte Vedra Beach, FL 32082 
+ 
+(904) 923-4834 
+JonasGredenhag@pgatourhq.com 
+ 
+CapTech Ventures, Inc. 
+
+Keith Smith 
+11911 Plaza America Drive #1020, Reston, VA 20190 
+ 
+(571) 485-7826 
+KSmith@captechconsulting.com 
+ 
+
+ 
+
+ 
+Description of Services & Deliverables   
+
+II. 
+ 
+CapTech shall provide the following Services:  
+ 
+
+•  Milestone 1 (end of week 3): CapTech will deliver an initial SSIS package and accompanying data 
+warehouse that addresses the needs for the “% Change” metrics and reporting needs, e.g., tracking 
+the number of changes associated with shot distance readings per stroke.  CapTech will build this 
+process in an automated fashion and will work with the Client to refine requirements for the end-
+state system through the 3-week development phase. 
+
+•  Milestone 2 (weeks 6-8): Using the data warehouse created in Milestone 1, CapTech will begin to 
+address reporting and  data modeling needs for the  remaining metrics.  Through the remaining 
+weeks, CapTech will work with the Client to prioritize all data and reporting needs and will begin to 
+scale  the  existing  data  warehouse  to  accommodate  new  requests,  with  a  focus  on  developing 
+maintainable underlying models.  
+
+•  Project Reporting: CapTech will deliver a weekly status update along with the SOW financials 
+
+(e.g., hours consumed, estimated $/hours remaining).  
+
+ 
+
+CONFIDENTIAL 
+CapTech SOW; v.2.2018  
+Page 1 of 4   
+
+ 
+CapTech will provide the following consultant roles as needed:  
+ 
+Role  
+Senior Data Engineer 
+
+Responsibilities  
+Provides ad hoc support and technical guidance for critical design 
+decisions pertaining to the data flow and other data transformations. 
+
+Project Lead/Data Strategist  Oversees all operations associated with project tasks.  Works with the 
+
+Mid-Level Data Modeler and 
+ETL Developer  
+
+Client and technical resources to ensure timely delivery of all work 
+components, provides testing guidance, provides data knowledge and 
+expertise where needed and informs the design of all deliverables.  
+Provides end-of-week status updates to the client team. 
+Designs and develops the future state data warehouse and applicable 
+business reports while iteratively building applicable report metrics.  
+Engages in ad hoc data modeling and analysis at the discretion of 
+Client.  Engages the Senior Data Engineer for guidance on high level 
+technical decisions and opportunities to optimize the overall system 
+design.  Engages with the PM to ensure that schedules are met. 
+
+Schedule 
+
+ 
+III. 
+ 
+Unless earlier terminated pursuant to the provisions of the Agreement or extended by written agreement of 
+the parties, the term of this SOW will commence on the SOW Effective Date, with work beginning on April 
+18, 2018 and ending on June 15, 2018.  
+ 
+IV.  
+ 
+CapTech will only bill Client for actual hours worked across all roles.  Client will be apprised of 
+project financials status on a weekly basis. Client shall pay CapTech for all hours billed at the following 
+hourly rates: 
+
+Payment 
+
+ 
+Role 
+
+Senior Data Engineer 
+Project Lead/Data Strategist 
+Mid-Level Data Modeler and 
+ETL Developer 
+
+Rate 
+
+$180 
+$180 
+$130 
+
+Estimated 
+
+Hours 
+
+20 
+20 
+320 
+
+Estimated 
+
+Cost 
+$3,600 
+$3,600 
+$41,600 
+
+ 
+
+Total 
+
+360 
+
+$48,800 
+
+ 
+Client will obtain and pay for all necessary software. Client will also reimburse CapTech for all reasonable 
+expenses, including, but not limited to Client pre-approved travel, living, and other ancillary expenses paid 
+or incurred by CapTech in connection with the Services or Deliverables. 
+ 
+Invoices will be generated on a monthly basis.  Client will pay all invoices in full per the terms specified in 
+the Agreement. 
+ 
+ 
+
+ 
+
+CONFIDENTIAL 
+CapTech SOW; v.2.2018  
+Page 2 of 4   
+
+Assumptions/Client Cooperation  
+
+V. 
+ 
+Client shall reasonably cooperate with CapTech in the provision of Services and shall provide the following 
+assistance to CapTech:  
+ 
+
+•  The Services will be performed at the following location(s):  
+PGA Tour: 
+816 A1A North  
+Suite 101 
+Ponte Vedra Beach, FL 32082 
+ 
+CapTech Richmond: 
+7100 Forest Ave #100, Richmond, VA 23226 
+
+ 
+
+CapTech DC: 
+11710 Plaza America Dr #1020, Reston, VA 20190 
+ 
+•  Client’s consultant onboarding process (including background checks if applicable) will not delay 
+
+CapTech’s schedule by more than five (5) business days.   
+
+•  Client will participate and provide timely feedback throughout the project.   
+•  CapTech  will  be  given  reasonable  and  timely  access  to  Client’s  subject  matter  experts, 
+
+stakeholders, associates, systems and technical documentation. 
+
+•  Client will provide relevant stakeholder participation and feedback throughout the project.  Client 
+will provide input during requirements sessions and wireframe development and assist CapTech 
+with understanding Client’s existing infrastructure. 
+
+•  While  onsite  at  Client,  CapTech  personnel  will  have  access  to  a  workspace  and  supporting 
+infrastructure  as  necessary  to  accomplish  their  assigned  tasks.  This  includes  phone,  network 
+access, printer access, internet access for remote connectivity, any necessary office automation 
+software and web access. 
+
+•  Client will provide access to the relevant data sources and environments. 
+•  All  documentation  and  materials  will  be  provided  to  Client  in  soft  copy  for  reproduction  as 
+
+necessary. 
+
+in the project schedule. 
+
+•  Any delays in Client reviews/approvals may result in increased risk to achieving the dates set forth 
+
+ 
+Client’s failure or delay in completing tasks required of Client, or in otherwise performing Client’s obligations 
+hereunder,  and  any  assumption  contained  herein  which  is  untrue  or  incorrect  may  impede  or  delay 
+completion of the Services and will excuse CapTech’s delay or failure to perform hereunder.  Such delays 
+or failures may result in changes to the schedule, staffing and approach to the Services and additional 
+charges for the Services. 
+ 
+ 
+
+ 
+
+CONFIDENTIAL 
+CapTech SOW; v.2.2018  
+Page 3 of 4   
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+CapTech Ventures, Inc. 
+ 
+
+ 
+
+_________________________________ 
+Signature 
+
+IN WITNESS WHEREOF,  the  parties  have  caused  this  SOW  to  be  signed  and  delivered  by  their  duly 
+authorized agents as of the Effective Date. 
+ 
+PGA Tour 
+ 
+ 
+_________________________________ 
+Signature 
+ 
+ 
+_________________________________ 
+Printed Name 
+ 
+ 
+_________________________________ 
+Title 
+ 
+ 
+_________________________________ 
+Date 
+ 
+ 
+ 
+ 
+ 
+ 
+
+_________________________________ 
+Date 
+
+_________________________________ 
+Printed Name 
+
+_________________________________ 
+Title 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+CONFIDENTIAL 
+CapTech SOW; v.2.2018  
+Page 4 of 4   
+
+

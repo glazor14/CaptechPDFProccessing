@@ -8,7 +8,12 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 
-def SOW_Parsing_TaM(text):
+def SOW_Parsing_TaM(text_file):
+	#The first step is to read text from the file
+	file = open(text_file, "r")
+	text = file.read()
+	print(text)
+
 	"""
 	We have a text variable which contains all the text in pdf file.
 	"""
@@ -149,68 +154,4 @@ def SOW_Parsing_TaM(text):
 
 	print ("Payment Table: ", paymentTable)
 
-
-name = ''.join(sys.argv[1:])
-
-#pdfFileObj = open('PGA_Tour_CapTech_SOW_Metrics_final.pdf', 'rb')
-pdfFileObj = open(name, 'rb')
-pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-
-pp = pprint.PrettyPrinter(indent=4)
-
-#print(pdfReader.numPages)
-
-#pageObj = pdfReader.getPage(0)
-
-#print(pageObj.extractText())
-num_pages = pdfReader.numPages
-count = 0
-text = ""
-
-while count < num_pages:
-	pageObj = pdfReader.getPage(count)
-	count += 1
-	text += pageObj.extractText()
-
-# PyPDF2 Cannot read scanned files!!
-
-#pp.pprint(text)
-
-#retoke = MWETokenizer(keywords)
-
-#pp.pprint(keywords)
-
-SOW_Parsing_TaM(text)
-
-#index = keywords.index('Engineer')
-
-#get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
-
-#rindexes = get_indexes("Role", keywords)
-
-#tindexes = get_indexes("Total", keywords)
-
-#print(rindexes)
-
-#print(tindexes)
-
-#a = 0
-"""
-for i in rindexes:
-	if keywords[i+1] == "Rate":
-		break
-	a = a +1
-
-print (a)
-
-print ((keywords[rindexes[a]:tindexes[0]+5]))
-"""
-#print (keywords[index:index+3])
-#pp.pprint(keywords)
-
-#pp.pprint(retoke.split())
-
-#print( minutesFirstPage)
-
-#pdfWatermarkReader = PyPDF2.PdfFileReader
 
