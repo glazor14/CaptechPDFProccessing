@@ -8,15 +8,11 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 
-def SOW_Parsing_TaM(text_file):
+def prepare_text(text_file):
 	#The first step is to read text from the file
 	file = open(text_file, "r")
 	text = file.read()
-	print(text)
 
-	"""
-	We have a text variable which contains all the text in pdf file.
-	"""
 	#The word_tokenize() function will break our text phrases into #individual words
 	tokens = word_tokenize(text)
 
@@ -32,6 +28,45 @@ def SOW_Parsing_TaM(text_file):
 
 	keywords = [word for word in tokens if not word in punctuations]
 
+	#print(keywords)
+	return keywords
+	
+
+def sow_parsing_ff(text_file):
+	#Prepare the text so that data can be extracted
+	keywords = prepare_text(text_file)
+
+	#Function that gets indexes of specified word in collection
+	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
+
+	# Find the Title of the Document
+	pindexes = get_indexes("Project", keywords)
+	thindexes = get_indexes("This", keywords)
+	a = 0
+	for i in pindexes:
+		if keywords[i+1] == "Title":
+			break
+		a = a + 1
+	project_title = (keywords[pindexes[a]+2:thindexes[0]])
+	project_title = ' '.join(project_title)
+	print("Project Title: ", project_title)
+
+	# Find the Client Name
+	captech_indexes = get_indexes("ﬁCapTechﬂ", keywords)
+	client_indexes = get_indexes("ﬁClientﬂ", keywords)
+
+	client_name = keywords[captech_indexes[0]+2:client_indexes[0]]
+	client_name = ' '.join(client_name)
+	print("Client Name: ", client_name)
+
+def SOW_Parsing_TaM(text_file):
+	"""
+	We have a text variable which contains all the text in pdf file.
+	"""
+	#Prepare the text so that data can be extracted
+	keywords = prepare_text(text_file)
+
+	#Function that gets indexes of specified word in collection
 	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
 
 	# Find the Title of the Document

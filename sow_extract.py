@@ -4,7 +4,8 @@ from pdftest import *
 
 def scrape_and_parse(pdf_file_name, text_file_name):
     pdf2txt.main([pdf_file_name, "-o", text_file_name])
-    SOW_Parsing_TaM(text_file_name)
+    sow_parsing_ff(text_file_name)
+    #SOW_Parsing_TaM(text_file_name)
 
 def main(args=None):
     import argparse
