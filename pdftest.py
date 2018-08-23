@@ -1,4 +1,4 @@
-import PyPDF2, sys, pprint
+import PyPDF2, sys, pprint, os
 import numpy as np
 
 from nltk.tokenize import word_tokenize
@@ -9,39 +9,51 @@ import nltk
 #nltk.download('stopwords')
 
 def prepare_text(text_file):
-	#The first step is to read text from the file
+	# The first step is to read text from the file
 	file = open(text_file, "r")
 	text = file.read()
 
-	#The word_tokenize() function will break our text phrases into #individual words
+	# The word_tokenize() function will break our text phrases into #individual words
 	tokens = word_tokenize(text)
 
-	#we'll create a new list which contains punctuation we wish to clean
+	# Check if text file is empty
+	if not tokens:
+		print("ERROR: PDF Scraping Failed")
+		os.remove(text_file)
+		return None
+
+	# We'll create a new list which contains punctuation we wish to clean
 	punctuations = ['(',')',';',':','[',']',',','.', '\"']
 
 	#stop_words = stopwords.words('english')
 
-	#We create a list comprehension which only returns a list of words 
-	#that are NOT IN stop_words and NOT IN punctuations.
-	#keywords = [word for word in tokens if not word 
-	#in stop_words and not word in punctuations]
+	# We create a list comprehension which only returns a list of words 
+	# that are NOT IN stop_words and NOT IN punctuations.
+	# keywords = [word for word in tokens if not word 
+	# in stop_words and not word in punctuations]
 
 	keywords = [word for word in tokens if not word in punctuations]
 
-	#print(keywords)
 	return keywords
 	
 
 def sow_parsing_ff(text_file):
-	#Prepare the text so that data can be extracted
+	print("\nNEW SOW")
+	print(text_file)
+
+	# Prepare the text so that data can be extracted
 	keywords = prepare_text(text_file)
 
-	#Function that gets indexes of specified word in collection
-	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
+	# Check if scraping failed
+	if keywords == None:
+		return
+
+	# Function that gets indexes of specified word in collection
+	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x.lower() == y.lower()]
 
 	# Find the Title of the Document
-	pindexes = get_indexes("Project", keywords)
-	thindexes = get_indexes("This", keywords)
+	pindexes = get_indexes("project", keywords)
+	thindexes = get_indexes("this", keywords)
 	a = 0
 	for i in pindexes:
 		if keywords[i+1] == "Title":
@@ -51,15 +63,37 @@ def sow_parsing_ff(text_file):
 	project_title = ' '.join(project_title)
 	print("Project Title: ", project_title)
 
-	# Find the Client Name
-	captech_indexes = get_indexes("ﬁCapTechﬂ", keywords)
-	client_indexes = get_indexes("ﬁClientﬂ", keywords)
+	# Find the SOW number
+	num_indexes = get_indexes("number", keywords)
+	sow_number = -1
+	if (keywords[num_indexes[1]+1] == '#'):
+		sow_number = keywords[num_indexes[1]+2]
+	else:
+		sow_number = keywords[num_indexes[1]+1]
+	print("SOW Number: ", sow_number)
 
-	client_name = keywords[captech_indexes[0]+2:client_indexes[0]]
+	# Find the effective date
+	eff_indexes = get_indexes("effective", keywords)
+	effective_date = keywords[eff_indexes[0]+1:eff_indexes[0]+4]
+	effective_date = ' '.join(effective_date)
+	print("Effective Date: ", effective_date)
+
+	# Find the Client Name
+	captech_indexes = get_indexes("captech", keywords)
+	client_indexes = get_indexes("client", keywords)
+
+	client_name = keywords[captech_indexes[0]+7:client_indexes[0]-1]
 	client_name = ' '.join(client_name)
 	print("Client Name: ", client_name)
 
+	# Find the fixed fee
+	fee_indexes = get_indexes("$", keywords)
+	fixed_fee = keywords[fee_indexes[0]+1]
+	print("Fixed Fee: ", fixed_fee)
+
 def SOW_Parsing_TaM(text_file):
+	print("NEW SOW")
+
 	"""
 	We have a text variable which contains all the text in pdf file.
 	"""
@@ -70,7 +104,7 @@ def SOW_Parsing_TaM(text_file):
 	get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
 
 	pp = pprint.PrettyPrinter(indent=4)
-	pp.pprint(keywords)
+	#pp.pprint(keywords)
 	# Find the Title of the Document
 	pindexes = get_indexes("Project", keywords)
 	thindexes = get_indexes("This", keywords)
@@ -82,6 +116,15 @@ def SOW_Parsing_TaM(text_file):
 	projectTitle = (keywords[pindexes[a]+2:thindexes[0]])
 	projectTitle = ' '.join(projectTitle)
 	print ("Project Title: ", projectTitle)
+
+	# Find the SOW number
+	num_indexes = get_indexes("number", keywords)
+	sow_number = -1
+	if (keywords[num_indexes[1]+1] == '#'):
+		sow_number = keywords[num_indexes[1]+2]
+	else:
+		sow_number = keywords[num_indexes[1]+1]
+	print("SOW Number: ", sow_number)
 
 	# Find the Client Name
 	capindexes = get_indexes("CapTech", keywords)
