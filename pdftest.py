@@ -7,11 +7,13 @@ from nltk.tokenize import MWETokenizer
 import nltk
 #nltk.download('punkt')
 #nltk.download('stopwords')
+from unidecode import unidecode
 
 def prepare_text(text_file):
 	# The first step is to read text from the file
 	file = open(text_file, "r")
 	text = file.read()
+	text = unidecode(text)
 
 	# The word_tokenize() function will break our text phrases into #individual words
 	tokens = word_tokenize(text)
@@ -23,7 +25,9 @@ def prepare_text(text_file):
 		return None
 
 	# We'll create a new list which contains punctuation we wish to clean
-	punctuations = ['(',')',';',':','[',']',',','.', '\"']
+	punctuations = ['(',')',';',':','[',']',',','.', '\"', '\'', '``', "''", '•']
+
+	
 
 	#stop_words = stopwords.words('english')
 
@@ -80,16 +84,30 @@ def sow_parsing_ff(text_file):
 
 	# Find the Client Name
 	captech_indexes = get_indexes("captech", keywords)
-	client_indexes = get_indexes("client", keywords)
 
-	client_name = keywords[captech_indexes[0]+7:client_indexes[0]-1]
+	a = 0
+	for i in captech_indexes:
+		if keywords[i+1:i+4] == ["Ventures", "Inc.", "CapTech"]:
+			a = i + 5
+			break
+	client_name = []
+	while keywords[a] != "Client":
+		client_name.append(keywords[a])
+		a = a + 1
 	client_name = ' '.join(client_name)
+	if len(client_name) > 50:
+		client_name = "ERROR: Could not read"
 	print("Client Name: ", client_name)
 
 	# Find the fixed fee
 	fee_indexes = get_indexes("$", keywords)
 	fixed_fee = keywords[fee_indexes[0]+1]
 	print("Fixed Fee: ", fixed_fee)
+
+	#pp = pprint.PrettyPrinter(indent=4)
+	#if project_title == "Barings SEO":
+	#	pp.pprint(keywords)
+
 
 def SOW_Parsing_TaM(text_file):
 	print("NEW SOW")
